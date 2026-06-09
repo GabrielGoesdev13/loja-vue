@@ -2,26 +2,21 @@
   <div class="carrinho-page">
     <h1>🛒 Meu Carrinho</h1>
 
-    <!-- Lista de itens no carrinho -->
     <div v-if="carrinho.length > 0">
-      <div v-for="item in carrinho" :key="item.id" class="carrinho-item">
-        <span class="item-icone">{{ item.icone }}</span>
-        <div class="item-info">
-          <h3>{{ item.nome }}</h3>
-          <p>R$ {{ item.preco.toFixed(2) }} x {{ item.quantidade }}</p>
-        </div>
-        <p class="item-subtotal">R$ {{ (item.preco * item.quantidade).toFixed(2) }}</p>
-        <button @click="$emit('remover', item.id)" class="btn-remover">✕</button>
-      </div>
+      <CartItem
+        v-for="item in carrinho"
+        :key="item.id"
+        :item="item"
+        @remover="$emit('remover', $event)"
+      />
 
-      <!-- Total -->
       <div class="carrinho-total">
         <h2>Total: R$ {{ total.toFixed(2) }}</h2>
       </div>
 
-      <!-- Formulário de finalizar compra -->
       <div class="formulario">
         <h2>Finalizar Compra</h2>
+
         <input v-model="form.nome" type="text" placeholder="Seu nome completo" />
         <p v-if="erros.nome" class="erro">{{ erros.nome }}</p>
 
@@ -34,7 +29,6 @@
         <button @click="finalizarCompra" class="btn-finalizar">Finalizar Compra</button>
       </div>
 
-      <!-- Modal de sucesso -->
       <div v-if="mostrarModal" class="modal-overlay">
         <div class="modal">
           <h2>✅ Pedido Realizado!</h2>
@@ -44,17 +38,21 @@
       </div>
     </div>
 
-    <!-- Carrinho vazio -->
     <div v-else class="carrinho-vazio">
-      <p>Seu carrinho está vazio 😕</p>
+      <p>Seu carrinho está vazio </p>
       <RouterLink to="/produtos" class="btn-voltar">Ver Produtos</RouterLink>
     </div>
   </div>
 </template>
 
 <script>
+import CartItem from '../components/carrinho/CartItem.vue'
+
 export default {
   name: 'CarrinhoView',
+  components: {
+    CartItem
+  },
   props: {
     carrinho: {
       type: Array,
@@ -78,18 +76,15 @@ export default {
     }
   },
   computed: {
-    
     total() {
       return this.carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0)
     }
   },
   methods: {
     finalizarCompra() {
-     
       this.erros = { nome: '', email: '', endereco: '' }
       let valido = true
 
-     
       if (!this.form.nome.trim()) {
         this.erros.nome = 'Nome é obrigatório.'
         valido = false
@@ -125,50 +120,6 @@ export default {
 .carrinho-page h1 {
   font-size: 2rem;
   margin-bottom: 24px;
-}
-
-.carrinho-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  background: white;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-}
-
-.item-icone {
-  font-size: 2rem;
-}
-
-.item-info {
-  flex: 1;
-}
-
-.item-info h3 {
-  margin-bottom: 4px;
-}
-
-.item-info p {
-  color: #888;
-  font-size: 0.9rem;
-}
-
-.item-subtotal {
-  font-weight: bold;
-  font-size: 1rem;
-}
-
-.btn-remover {
-  background: #e74c3c;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-  font-size: 1rem;
 }
 
 .carrinho-total {
