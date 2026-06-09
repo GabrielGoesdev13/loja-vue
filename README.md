@@ -1,38 +1,69 @@
-# loja-vue
+# 🛍️ LojaVue
 
-This template should help get you started developing with Vue 3 in Vite.
+Projeto desenvolvido para a disciplina de Front-End utilizando Vue.js.
 
-## Recommended IDE Setup
+## 👥 Integrantes do Grupo
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Gabriel Goes
+- Matheus Henrique Ferreira
+- Gustavo Ribas
 
-## Recommended Browser Setup
+## 🛠️ Tecnologias Utilizadas
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- Vue.js 3
+- Vue Router
+- Vite
+- HTML5
+- CSS3
+- JavaScript
 
-## Customize configuration
+## ⚙️ Como Executar o Projeto
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### Pré-requisitos
 
-## Project Setup
+- Node.js instalado (https://nodejs.org)
+- Git instalado (https://git-scm.com)
 
-```sh
+### Passo a passo
+
+1. Clone o repositório:
+ git clone https://github.com/GabrielGoesDev13/loja-vue.git
+
+ 2. Entre na pasta do projeto:
+cd loja-vue
+
+3. Instale as dependências:
 npm install
-```
 
-### Compile and Hot-Reload for Development
-
-```sh
+4. Inicie o servidor de desenvolvimento:
 npm run dev
-```
 
-### Compile and Minify for Production
+5. Acesse no navegador:
+http://localhost:5173
 
-```sh
-npm run build
-```
+## 📁 Estrutura do Projeto
+src/
+├── components/
+│    carrinho/
+│   │CartItem.vue
+│    layout/
+│   │ NavBar.vue
+│   └produtos/
+│      └ProductCard.vue
+├── router/
+│   index.js
+├── views/
+│   CarrinhoView.vue
+│   HomeView.vue
+│   ProdutosView.vue
+├── App.vue
+└── main.js
+
+## ✅ Funcionalidades
+
+- Página Home com banner e categorias
+- Lista de produtos com busca e filtro por categoria
+- Carrinho de compras com adicionar e remover itens
+- Formulário de finalizar compra com validação de campos
+- Modal de confirmação de pedido
+- Interface responsiva 
